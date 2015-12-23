@@ -1,0 +1,559 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D94543231C26255000EF18E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94543221C26255000EF18E2 /* AppDelegate.swift */; };
+		D94543251C26255000EF18E2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94543241C26255000EF18E2 /* ViewController.swift */; };
+		D94543281C26255000EF18E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D94543261C26255000EF18E2 /* Main.storyboard */; };
+		D945432A1C26255000EF18E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D94543291C26255000EF18E2 /* Assets.xcassets */; };
+		D945432D1C26255000EF18E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D945432B1C26255000EF18E2 /* LaunchScreen.storyboard */; };
+		D94543381C26255000EF18E2 /* TengoGengoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94543371C26255000EF18E2 /* TengoGengoTests.swift */; };
+		D94543431C26255000EF18E2 /* TengoGengoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94543421C26255000EF18E2 /* TengoGengoUITests.swift */; };
+		D94543531C262A3600EF18E2 /* AtomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94543521C262A3600EF18E2 /* AtomView.swift */; };
+		D95EDEBD1C27A7CF00984EC6 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95EDEBC1C27A7CF00984EC6 /* SwiftyJSON.swift */; };
+		D9F5B88B1C267E8B00B51A8E /* japanese.json in Resources */ = {isa = PBXBuildFile; fileRef = D9F5B88A1C267E8B00B51A8E /* japanese.json */; };
+		D9F5B88E1C267F2400B51A8E /* MoleculeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F5B88D1C267F2400B51A8E /* MoleculeView.swift */; };
+		D9F5B8901C26854D00B51A8E /* khiragana.json in Resources */ = {isa = PBXBuildFile; fileRef = D9F5B88F1C26854D00B51A8E /* khiragana.json */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D94543341C26255000EF18E2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D94543171C26255000EF18E2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D945431E1C26255000EF18E2;
+			remoteInfo = TengoGengo;
+		};
+		D945433F1C26255000EF18E2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D94543171C26255000EF18E2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D945431E1C26255000EF18E2;
+			remoteInfo = TengoGengo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D945431F1C26255000EF18E2 /* TengoGengo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TengoGengo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D94543221C26255000EF18E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D94543241C26255000EF18E2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D94543271C26255000EF18E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D94543291C26255000EF18E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D945432C1C26255000EF18E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D945432E1C26255000EF18E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D94543331C26255000EF18E2 /* TengoGengoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TengoGengoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D94543371C26255000EF18E2 /* TengoGengoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TengoGengoTests.swift; sourceTree = "<group>"; };
+		D94543391C26255000EF18E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D945433E1C26255000EF18E2 /* TengoGengoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TengoGengoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D94543421C26255000EF18E2 /* TengoGengoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TengoGengoUITests.swift; sourceTree = "<group>"; };
+		D94543441C26255000EF18E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D94543521C262A3600EF18E2 /* AtomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AtomView.swift; path = TengoGengo/AtomView.swift; sourceTree = "<group>"; };
+		D95EDEBC1C27A7CF00984EC6 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		D9F5B88A1C267E8B00B51A8E /* japanese.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = japanese.json; sourceTree = "<group>"; };
+		D9F5B88D1C267F2400B51A8E /* MoleculeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MoleculeView.swift; path = TengoGengo/MoleculeView.swift; sourceTree = "<group>"; };
+		D9F5B88F1C26854D00B51A8E /* khiragana.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = khiragana.json; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D945431C1C26255000EF18E2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D94543301C26255000EF18E2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D945433B1C26255000EF18E2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D94543161C26255000EF18E2 = {
+			isa = PBXGroup;
+			children = (
+				D95EDEB81C27A6AA00984EC6 /* 3rd party */,
+				D9F5B88C1C267E9200B51A8E /* data */,
+				D94543541C262A4200EF18E2 /* Game Pieces */,
+				D94543211C26255000EF18E2 /* TengoGengo */,
+				D94543361C26255000EF18E2 /* TengoGengoTests */,
+				D94543411C26255000EF18E2 /* TengoGengoUITests */,
+				D94543201C26255000EF18E2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D94543201C26255000EF18E2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D945431F1C26255000EF18E2 /* TengoGengo.app */,
+				D94543331C26255000EF18E2 /* TengoGengoTests.xctest */,
+				D945433E1C26255000EF18E2 /* TengoGengoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D94543211C26255000EF18E2 /* TengoGengo */ = {
+			isa = PBXGroup;
+			children = (
+				D94543221C26255000EF18E2 /* AppDelegate.swift */,
+				D94543241C26255000EF18E2 /* ViewController.swift */,
+				D94543261C26255000EF18E2 /* Main.storyboard */,
+				D94543291C26255000EF18E2 /* Assets.xcassets */,
+				D945432B1C26255000EF18E2 /* LaunchScreen.storyboard */,
+				D945432E1C26255000EF18E2 /* Info.plist */,
+			);
+			path = TengoGengo;
+			sourceTree = "<group>";
+		};
+		D94543361C26255000EF18E2 /* TengoGengoTests */ = {
+			isa = PBXGroup;
+			children = (
+				D94543371C26255000EF18E2 /* TengoGengoTests.swift */,
+				D94543391C26255000EF18E2 /* Info.plist */,
+			);
+			path = TengoGengoTests;
+			sourceTree = "<group>";
+		};
+		D94543411C26255000EF18E2 /* TengoGengoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D94543421C26255000EF18E2 /* TengoGengoUITests.swift */,
+				D94543441C26255000EF18E2 /* Info.plist */,
+			);
+			path = TengoGengoUITests;
+			sourceTree = "<group>";
+		};
+		D94543541C262A4200EF18E2 /* Game Pieces */ = {
+			isa = PBXGroup;
+			children = (
+				D94543521C262A3600EF18E2 /* AtomView.swift */,
+				D9F5B88D1C267F2400B51A8E /* MoleculeView.swift */,
+			);
+			name = "Game Pieces";
+			sourceTree = "<group>";
+		};
+		D95EDEB81C27A6AA00984EC6 /* 3rd party */ = {
+			isa = PBXGroup;
+			children = (
+				D95EDEBC1C27A7CF00984EC6 /* SwiftyJSON.swift */,
+			);
+			name = "3rd party";
+			sourceTree = "<group>";
+		};
+		D9F5B88C1C267E9200B51A8E /* data */ = {
+			isa = PBXGroup;
+			children = (
+				D9F5B88A1C267E8B00B51A8E /* japanese.json */,
+				D9F5B88F1C26854D00B51A8E /* khiragana.json */,
+			);
+			name = data;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D945431E1C26255000EF18E2 /* TengoGengo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D94543471C26255000EF18E2 /* Build configuration list for PBXNativeTarget "TengoGengo" */;
+			buildPhases = (
+				D945431B1C26255000EF18E2 /* Sources */,
+				D945431C1C26255000EF18E2 /* Frameworks */,
+				D945431D1C26255000EF18E2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TengoGengo;
+			productName = TengoGengo;
+			productReference = D945431F1C26255000EF18E2 /* TengoGengo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D94543321C26255000EF18E2 /* TengoGengoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D945434A1C26255000EF18E2 /* Build configuration list for PBXNativeTarget "TengoGengoTests" */;
+			buildPhases = (
+				D945432F1C26255000EF18E2 /* Sources */,
+				D94543301C26255000EF18E2 /* Frameworks */,
+				D94543311C26255000EF18E2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D94543351C26255000EF18E2 /* PBXTargetDependency */,
+			);
+			name = TengoGengoTests;
+			productName = TengoGengoTests;
+			productReference = D94543331C26255000EF18E2 /* TengoGengoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D945433D1C26255000EF18E2 /* TengoGengoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D945434D1C26255000EF18E2 /* Build configuration list for PBXNativeTarget "TengoGengoUITests" */;
+			buildPhases = (
+				D945433A1C26255000EF18E2 /* Sources */,
+				D945433B1C26255000EF18E2 /* Frameworks */,
+				D945433C1C26255000EF18E2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D94543401C26255000EF18E2 /* PBXTargetDependency */,
+			);
+			name = TengoGengoUITests;
+			productName = TengoGengoUITests;
+			productReference = D945433E1C26255000EF18E2 /* TengoGengoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D94543171C26255000EF18E2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0710;
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = "Merwan Rodriguez";
+				TargetAttributes = {
+					D945431E1C26255000EF18E2 = {
+						CreatedOnToolsVersion = 7.1.1;
+						DevelopmentTeam = TB34E6EGBD;
+					};
+					D94543321C26255000EF18E2 = {
+						CreatedOnToolsVersion = 7.1.1;
+						TestTargetID = D945431E1C26255000EF18E2;
+					};
+					D945433D1C26255000EF18E2 = {
+						CreatedOnToolsVersion = 7.1.1;
+						TestTargetID = D945431E1C26255000EF18E2;
+					};
+				};
+			};
+			buildConfigurationList = D945431A1C26255000EF18E2 /* Build configuration list for PBXProject "TengoGengo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D94543161C26255000EF18E2;
+			productRefGroup = D94543201C26255000EF18E2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D945431E1C26255000EF18E2 /* TengoGengo */,
+				D94543321C26255000EF18E2 /* TengoGengoTests */,
+				D945433D1C26255000EF18E2 /* TengoGengoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D945431D1C26255000EF18E2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D9F5B88B1C267E8B00B51A8E /* japanese.json in Resources */,
+				D945432D1C26255000EF18E2 /* LaunchScreen.storyboard in Resources */,
+				D9F5B8901C26854D00B51A8E /* khiragana.json in Resources */,
+				D945432A1C26255000EF18E2 /* Assets.xcassets in Resources */,
+				D94543281C26255000EF18E2 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D94543311C26255000EF18E2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D945433C1C26255000EF18E2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D945431B1C26255000EF18E2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D94543251C26255000EF18E2 /* ViewController.swift in Sources */,
+				D94543231C26255000EF18E2 /* AppDelegate.swift in Sources */,
+				D94543531C262A3600EF18E2 /* AtomView.swift in Sources */,
+				D95EDEBD1C27A7CF00984EC6 /* SwiftyJSON.swift in Sources */,
+				D9F5B88E1C267F2400B51A8E /* MoleculeView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D945432F1C26255000EF18E2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D94543381C26255000EF18E2 /* TengoGengoTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D945433A1C26255000EF18E2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D94543431C26255000EF18E2 /* TengoGengoUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D94543351C26255000EF18E2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D945431E1C26255000EF18E2 /* TengoGengo */;
+			targetProxy = D94543341C26255000EF18E2 /* PBXContainerItemProxy */;
+		};
+		D94543401C26255000EF18E2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D945431E1C26255000EF18E2 /* TengoGengo */;
+			targetProxy = D945433F1C26255000EF18E2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D94543261C26255000EF18E2 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D94543271C26255000EF18E2 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D945432B1C26255000EF18E2 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D945432C1C26255000EF18E2 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D94543451C26255000EF18E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D94543461C26255000EF18E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D94543481C26255000EF18E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = TengoGengo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = nana.sen.mei.uno.TengoGengo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Debug;
+		};
+		D94543491C26255000EF18E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = TengoGengo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = nana.sen.mei.uno.TengoGengo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Release;
+		};
+		D945434B1C26255000EF18E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = TengoGengoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = nana.sen.mei.uno.TengoGengoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TengoGengo.app/TengoGengo";
+			};
+			name = Debug;
+		};
+		D945434C1C26255000EF18E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = TengoGengoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = nana.sen.mei.uno.TengoGengoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TengoGengo.app/TengoGengo";
+			};
+			name = Release;
+		};
+		D945434E1C26255000EF18E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = TengoGengoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = nana.sen.mei.uno.TengoGengoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = TengoGengo;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		D945434F1C26255000EF18E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = TengoGengoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = nana.sen.mei.uno.TengoGengoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = TengoGengo;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D945431A1C26255000EF18E2 /* Build configuration list for PBXProject "TengoGengo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D94543451C26255000EF18E2 /* Debug */,
+				D94543461C26255000EF18E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D94543471C26255000EF18E2 /* Build configuration list for PBXNativeTarget "TengoGengo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D94543481C26255000EF18E2 /* Debug */,
+				D94543491C26255000EF18E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D945434A1C26255000EF18E2 /* Build configuration list for PBXNativeTarget "TengoGengoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D945434B1C26255000EF18E2 /* Debug */,
+				D945434C1C26255000EF18E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D945434D1C26255000EF18E2 /* Build configuration list for PBXNativeTarget "TengoGengoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D945434E1C26255000EF18E2 /* Debug */,
+				D945434F1C26255000EF18E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D94543171C26255000EF18E2 /* Project object */;
+}
