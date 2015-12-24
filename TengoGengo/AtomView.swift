@@ -26,6 +26,7 @@ class AtomView: UIButton, UIGestureRecognizerDelegate {
     var snap: UISnapBehavior!
     var delegate: AtomViewDelegate?
     var originalCenter: CGPoint!
+    var parentView: UIView!
     
     override var selected: Bool {
         willSet (newSelected) {
@@ -42,10 +43,11 @@ class AtomView: UIButton, UIGestureRecognizerDelegate {
     }
     
     override func drawRect(rect: CGRect) {
+        let context = UIGraphicsGetCurrentContext()
+
         var path = UIBezierPath(ovalInRect: rect)
         strokeColor.setFill()
         path.fill()
-        
         // Doing this for two reasons:
         // a - I'm a newb to this stuff
         // b - when I set strokeWidth to something large, it gets clipped (rectangleishly), so I'm faking it.
@@ -55,26 +57,39 @@ class AtomView: UIButton, UIGestureRecognizerDelegate {
         path = UIBezierPath(ovalInRect: CGRectMake(rect.origin.x + offset, rect.origin.y + offset, childWidth, childWidth))
         fillColor.setFill()
         path.fill()
+        
+        let myShadowOffset = CGSizeMake (-10,  15)
+        CGContextSaveGState(context)
+        CGContextSetShadowWithColor(context, myShadowOffset, 5, UIColor.redColor().CGColor)
+        //CGContextSetShadow (context, myShadowOffset, 5)
+        
         super.drawRect(rect)
         setTitleColor(strokeColor, forState: .Normal)
 
     }
     
     required init?(coder aDecoder: NSCoder) {
-        self.atomDiameter = atomRadius * 2
+        atomDiameter = atomRadius * 2
         super.init(coder: aDecoder)
 
         //self.contentEdgeInsets = UIEdgeInsetsMake(-self.fontSize / 8, 0, 0, 0) // there's gotta be a better way to center this text.
     }
     
-    init(x: CGFloat, y: CGFloat, syllable: String, translation: String) {
+    init(x: CGFloat, y: CGFloat, syllable: String, translation: String, inView: UIView) {
         atomDiameter = atomRadius * 2
+        parentView = inView
         super.init(frame:CGRectMake(x , y, atomDiameter, atomDiameter))
-        
         originalCenter = center
+        frame = CGRectMake(parentView.center.x, parentView.center.y, atomDiameter, atomDiameter)
         setupGestureRecognizers()
+        setupUIDynamics()
         loadText(syllable, language2: translation)
 
+    }
+    
+    func setupUIDynamics() {
+        animator = UIDynamicAnimator(referenceView: parentView)
+        snap = UISnapBehavior(item: self, snapToPoint: originalCenter)
     }
     
     func setupGestureRecognizers() {
@@ -90,7 +105,7 @@ class AtomView: UIButton, UIGestureRecognizerDelegate {
         titleLabel?.font = UIFont(name: "Helvetica", size: fontSize)
         titleLabel?.baselineAdjustment = UIBaselineAdjustment.AlignCenters
         setTitle(initialString, forState: .Normal)
-        setTitle(translation, forState: .Disabled)
+        setTitle("", forState: .Disabled)
     }
     
     func handleTap(recognizer: UITapGestureRecognizer) {
@@ -106,7 +121,7 @@ class AtomView: UIButton, UIGestureRecognizerDelegate {
         }
         
         animator.removeAllBehaviors()
-        let location: CGPoint = recognizer.locationInView(superview)
+        let location: CGPoint = recognizer.locationInView(parentView)
         let offset = UIOffsetMake(location.x, location.y)
         attachmentBehavior = UIAttachmentBehavior(item: self, offsetFromCenter: offset, attachedToAnchor: location)
         center = attachmentBehavior.anchorPoint
@@ -115,20 +130,17 @@ class AtomView: UIButton, UIGestureRecognizerDelegate {
         
     }
     
-    func handleDragEnd(recognizer: UIPanGestureRecognizer) {
-        if (snap == nil) {
-            snap = UISnapBehavior(item: self, snapToPoint: originalCenter)
-        }
-        
+    func snapIntoPlace() {
         animator.removeAllBehaviors()
         animator.addBehavior(snap)
+        
+    }
+    
+    func handleDragEnd(recognizer: UIPanGestureRecognizer) {
+        snapIntoPlace()
     }
     
     func handlePan(recognizer: UIPanGestureRecognizer) {
-        if (animator == nil) {
-            animator = UIDynamicAnimator(referenceView: superview!)
-        }
-        
         if (recognizer.state == .Ended) {
             handleDragEnd(recognizer)
         } else {
@@ -136,20 +148,22 @@ class AtomView: UIButton, UIGestureRecognizerDelegate {
         }
     }
     
-    func handleMatched() {
-        if (animator == nil) {
-            animator = UIDynamicAnimator(referenceView: superview!)
-        }
-        
-        if (snap == nil) {
-            snap = UISnapBehavior(item: self, snapToPoint: originalCenter)
-        }
-        
+    func handleMatched(moleculeRadius: CGFloat) {        
         animator.removeAllBehaviors()
-        snap = UISnapBehavior(item: self, snapToPoint: superview!.center)
+        snap = UISnapBehavior(item: self, snapToPoint: parentView.center)
         animator.addBehavior(snap)
         
-        self.titleLabel?.text = ""
+        self.selected = false
+        self.enabled = false
+        self.setNeedsDisplay()
+        self.parentView.bringSubviewToFront(self)
+        
+        let mr = moleculeRadius
+        UIView.animateWithDuration(0.420, delay: 0.2, options: .TransitionCrossDissolve, animations: {
+            let coefficient:CGFloat = 1.0
+            let size:CGFloat = self.frame.size.width + mr * coefficient
+            self.frame = CGRectMake(self.frame.origin.x - (mr / 2), self.frame.origin.y - (mr / 2), size, size)
+            }, completion: nil)
     }
     
 // MARK: UIGestureRecognizerDelegate

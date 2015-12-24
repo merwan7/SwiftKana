@@ -15,6 +15,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var gameControlsBar: UIToolbar!
     
     
+    var runningGame: MoleculeView!;
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,7 +31,7 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated);
-        MoleculeView(gameView: gameContentView, key: "h", type: "Hiragana")
+        runningGame = MoleculeView(gameView: gameContentView, key: "h", type: "Hiragana")
     }
     
     override func didReceiveMemoryWarning() {
@@ -38,10 +41,11 @@ class ViewController: UIViewController {
     
     
     @IBAction func reload() {
-        gameContentView.subviews.forEach({ $0.removeFromSuperview()
-        })
-        
-        MoleculeView(gameView: gameContentView, key: "h", type: "Hiragana")
+        runningGame.reload();
+    }
+    
+    @IBAction func nextSet() {
+        runningGame.nextSet()
     }
 }
 

@@ -27,7 +27,11 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="AE5-CP-ftV"/>
-                                    <barButtonItem title="Item" id="ohZ-de-1Ux"/>
+                                    <barButtonItem title="Next" id="ohZ-de-1Ux">
+                                        <connections>
+                                            <action selector="nextSet" destination="BYZ-38-t0r" id="3Zx-v2-K1R"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7sE-Bk-xiW">
