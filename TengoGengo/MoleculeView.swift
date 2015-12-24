@@ -14,43 +14,57 @@ class MoleculeView: NSObject, AtomViewDelegate {
     var allAtoms = [String : AtomView]();
     var pairedUpCount = 0;
     var lastSelected: AtomView?;
-    var gameContentView: UIView;
+    var gameContentView: UIView!;
     
-    // Animation variables
-    var animator: UIDynamicAnimator!;
-    var gravity: UIGravityBehavior!;
-    var collision: UICollisionBehavior!;
-    
-    init(gameView: UIView) {
-        self.gameContentView = gameView;
-        
+    init(gameView: UIView, key: String, type: String) {
         super.init();
-        loadData();
+        
+        self.gameContentView = gameView;
+        loadData(key, type: type);
         createButtons();
         addButtonsToView();
-        addPhysics();
+        //        addPhysics();
     }
     
-    func addPhysics() {
-        animator = UIDynamicAnimator(referenceView: self.gameContentView);
-        gravity = UIGravityBehavior(items: Array(allAtoms.values));
-        collision = UICollisionBehavior(items: Array(allAtoms.values));
-        collision.translatesReferenceBoundsIntoBoundary = true
-
-        animator.addBehavior(collision);
-        animator.addBehavior(gravity);
-    }
     
     func createButtons() {
-        var index:CGFloat = 1.0;
+        let step = 2 * M_PI / Double(currentSet.count * 2);
+        let h = Double(gameContentView.center.x - 30);
+        let k = Double(gameContentView.center.y - 30);
+        let r = Double(gameContentView.bounds.width / 2 - 60); // TODO: this -50 should be coming from atom radius
+        var theta = 0.0;
+        var x:CGFloat = 0.0;
+        var y:CGFloat = 0.0;
         
-        for (key,value):(String, JSON) in currentSet {
-            let atom = AtomView(x: index * 50, y: index * 25, syllable: value.stringValue, translation: key);
-            let pairAtom = AtomView(x: index * 50 + 50, y: index * 25 + 50 , syllable: key, translation: value.stringValue);
+        for (key, value):(String, JSON) in currentSet {
+            x = CGFloat(h + r * cos(theta));
+            y = CGFloat(k - r * sin(theta));
+            let atom = AtomView(x: x, y: y, syllable: value.stringValue, translation: key);
             allAtoms[atom.initialString] = atom;
-            allAtoms[pairAtom.initialString] = pairAtom;
-            index += 1;
+            theta += step
         }
+        
+        print(allAtoms.count);
+        
+        for (key, value):(String, JSON) in currentSet {
+            x = CGFloat(h + r * cos(theta));
+            y = CGFloat(k - r * sin(theta));
+            let pairAtom = AtomView(x: x, y: y, syllable: key, translation: value.stringValue);
+            allAtoms[pairAtom.initialString] = pairAtom;
+            theta += step;
+
+        }
+        
+
+        print(allAtoms.count);
+        
+//        for (key,value):(String, JSON) in currentSet {
+//            let atom = AtomView(x: index * 50, y: index * 25, syllable: value.stringValue, translation: key);
+//            let pairAtom = AtomView(x: index * 50 + 50, y: index * 25 + 50 , syllable: key, translation: value.stringValue);
+//            allAtoms[atom.initialString] = atom;
+//            allAtoms[pairAtom.initialString] = pairAtom;
+//            index += 1;
+//        }
     }
     
     func addButtonsToView() {
@@ -61,12 +75,12 @@ class MoleculeView: NSObject, AtomViewDelegate {
     }
     
     
-    func loadData() {
+    func loadData(key: String, type: String) {
         if let path = NSBundle.mainBundle().pathForResource("japanese", ofType: "json")
         {
             if let jsonData = try? NSData(contentsOfFile: path, options: NSDataReadingOptions.DataReadingMappedIfSafe)
             {
-                japaneseNormalizer(JSON(data: jsonData), key: "h", desiredType: "Hiragana");
+                japaneseNormalizer(JSON(data: jsonData), key: key, desiredType: type);
             }
         }
     }
@@ -91,22 +105,23 @@ class MoleculeView: NSObject, AtomViewDelegate {
         }
         print(currentSet);
     }
+    
 
 // MARK: AtomViewDelegate
     func atomWasSelected(atom: AtomView) {
         print(atom.initialString + ": " + atom.translation);
         
         if (atom.initialString == self.lastSelected?.translation) {
-            lastSelected?.frame = CGRectZero;
-            atom.frame = CGRectZero;
-            self.lastSelected = nil;
+            lastSelected?.handleMatched();
+            atom.handleMatched();
+            lastSelected = nil;
 
-            self.pairedUpCount += 2;
+            pairedUpCount += 2;
             
-            if (self.pairedUpCount == allAtoms.count) {
+            if (pairedUpCount == allAtoms.count) {
                 print("you win!");
             }
-        } else if (self.lastSelected != nil) {
+        } else if (lastSelected != nil) {
             let delay = 0.2 * Double(NSEC_PER_SEC)
             let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
             dispatch_after(time, dispatch_get_main_queue()) {
@@ -115,7 +130,7 @@ class MoleculeView: NSObject, AtomViewDelegate {
                 self.lastSelected = nil;
             }
         } else {
-            self.lastSelected = atom;
+            lastSelected = atom;
         }
     }
 }
