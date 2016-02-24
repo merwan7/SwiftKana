@@ -10,7 +10,7 @@ import UIKit
 
 class MoleculeView: NSObject, AtomViewDelegate {
 
-    var JSON_DATA: JSON = [:];
+    var JSON_DATA: JSON = [:]
     var currentSet: JSON = [:]
     var allAtoms = [String : AtomView]()
     var pairedUpCount = 0
@@ -29,10 +29,16 @@ class MoleculeView: NSObject, AtomViewDelegate {
         selectSet(key, type: type)
     }
     
+    init(gameView: UIView, key: String, type: String, difficulty: String) {
+        super.init()
+        
+        self.gameContentView = gameView
+        // selectSet(key, type: type) // TODO: add difficulty set where it is not limited to just 1 type (so you could have ha shi ku re so as a set)
+    }
+    
     func start() {
         createButtons()
         addButtonsToView()
-        //        addPhysics();
     }
     
     func reload() {
@@ -41,21 +47,23 @@ class MoleculeView: NSObject, AtomViewDelegate {
     }
     
     func cleanup() {
-        self.gameContentView.subviews.forEach({
+        gameContentView.subviews.forEach({
             $0.removeFromSuperview()
         })
+        lastSelected = nil
+        pairedUpCount = 0
         allAtoms = [:]
         currentSet = [:]
     }
     
     func selectSet(key:String, type: String) {
-        currentKey = key;
-        currentType = type;
+        currentKey = key
+        currentType = type
         cleanup()
         if (JSON_DATA.count == 0) {
             loadData()
         }
-        japaneseNormalizer(JSON_DATA, key: currentKey, desiredType: currentType);
+        japaneseNormalizer(JSON_DATA, key: currentKey, desiredType: currentType)
         start()
     }
     
@@ -75,7 +83,7 @@ class MoleculeView: NSObject, AtomViewDelegate {
         let step = 2 * M_PI / Double(currentSet.count * 2)
         let h = Double(gameContentView.center.x - 30)
         let k = Double(gameContentView.center.y - 30)
-        let r = Double(gameContentView.bounds.width / 2 - atomDiameter) // TODO: this -60 should be coming from atom radius
+        let r = Double(gameContentView.bounds.width / 2 - atomDiameter)
         var theta = 0.0
         var x:CGFloat = 0.0
         var y:CGFloat = 0.0
@@ -85,34 +93,26 @@ class MoleculeView: NSObject, AtomViewDelegate {
         for (key, value):(String, JSON) in currentSet {
             x = CGFloat(h + r * cos(theta))
             y = CGFloat(k - r * sin(theta))
-            let atom = AtomView(x: x, y: y, syllable: value.stringValue, translation: key, inView: gameContentView)
-            atom.delegate = self;
+            let atom = AtomView(x: x, y: y, syllable: value.stringValue, translation: key, inView: gameContentView, isTranslation: true)
+            atom.delegate = self
             allAtoms[atom.initialString] = atom
             theta += step
         }
         
-        print(allAtoms.count);
+        print(allAtoms.count)
         
         for (key, value):(String, JSON) in currentSet {
-            x = CGFloat(h + r * cos(theta));
-            y = CGFloat(k - r * sin(theta));
-            let pairAtom = AtomView(x: x, y: y, syllable: key, translation: value.stringValue, inView: gameContentView);
-            pairAtom.delegate = self;
-            allAtoms[pairAtom.initialString] = pairAtom;
-            theta += step;
+            x = CGFloat(h + r * cos(theta))
+            y = CGFloat(k - r * sin(theta))
+            let pairAtom = AtomView(x: x, y: y, syllable: key, translation: value.stringValue, inView: gameContentView, isTranslation: false)
+            pairAtom.delegate = self
+            allAtoms[pairAtom.initialString] = pairAtom
+            theta += step
 
         }
         
 
-        print(allAtoms.count);
-        
-//        for (key,value):(String, JSON) in currentSet {
-//            let atom = AtomView(x: index * 50, y: index * 25, syllable: value.stringValue, translation: key);
-//            let pairAtom = AtomView(x: index * 50 + 50, y: index * 25 + 50 , syllable: key, translation: value.stringValue);
-//            allAtoms[atom.initialString] = atom;
-//            allAtoms[pairAtom.initialString] = pairAtom;
-//            index += 1;
-//        }
+        print(allAtoms.count)
     }
     
     func addButtonsToView() {
@@ -126,10 +126,8 @@ class MoleculeView: NSObject, AtomViewDelegate {
     
     func loadData() {
         
-        if let path = NSBundle.mainBundle().pathForResource("japanese", ofType: "json")
-        {
-            if let jsonData = try? NSData(contentsOfFile: path, options: NSDataReadingOptions.DataReadingMappedIfSafe)
-            {
+        if let path = NSBundle.mainBundle().pathForResource("japanese", ofType: "json") {
+            if let jsonData = try? NSData(contentsOfFile: path, options: NSDataReadingOptions.DataReadingMappedIfSafe) {
                 JSON_DATA = JSON(data: jsonData)
             }
         }
@@ -141,13 +139,13 @@ class MoleculeView: NSObject, AtomViewDelegate {
         }
         
         for (_, subJSON):(String, JSON) in jsonResult[key] {
-            let seion = subJSON["Seion"];
+            let seion = subJSON["Seion"]
             //let dakuon = subJSON["Dakuon"];
             //let handakuon = subJSON["Handakuon"];
             
-            let romaji = seion["Romaji"].stringValue;
-            let hiragana = seion[desiredType].stringValue;
-            currentSet[romaji].string = hiragana;
+            let romaji = seion["Romaji"].stringValue
+            let hiragana = seion[desiredType].stringValue
+            currentSet[romaji].string = hiragana
             
 //            romaji = dakuon["Romaji"].stringValue;
 //            hiragana = dakuon[desiredType].stringValue;
@@ -157,40 +155,42 @@ class MoleculeView: NSObject, AtomViewDelegate {
 //            hiragana = handakuon[desiredType].stringValue;
 //            currentState[romaji].string = hiragana;
         }
-        print(currentSet);
+        print(currentSet)
     }
     
     func win() {
-        nextSet()
+        nextSet() // for now
     }
     
 
 // MARK: AtomViewDelegate
     func atomWasSelected(atom: AtomView) {
         
-        //moleculeRadius = gameContentView.bounds.width / 2 - atomDiameter
-        print(atom.initialString + ": " + atom.translation);
+        // moleculeRadius = gameContentView.bounds.width / 2 - atomDiameter
+        print(atom.initialString + ": " + atom.translation)
         
-        if (atom.initialString == self.lastSelected?.translation) {
+        if (atom.initialString == self.lastSelected?.translation && self.lastSelected!.selected) {
             lastSelected?.handleMatched(moleculeRadius)
             atom.handleMatched(moleculeRadius)
-            lastSelected = nil;
+            lastSelected = nil
 
-            pairedUpCount += 2;
+            pairedUpCount += 2
             
             if (pairedUpCount == allAtoms.count) {
-                win();
+                win()
             }
+        } else if (self.lastSelected == atom) {
+            self.lastSelected = nil
         } else if (lastSelected != nil) {
             let delay = 0.2 * Double(NSEC_PER_SEC)
             let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
             dispatch_after(time, dispatch_get_main_queue()) {
-                atom.selected = false;
-                self.lastSelected?.selected = false;
-                self.lastSelected = nil;
+                atom.selected = false
+                self.lastSelected?.selected = false
+                self.lastSelected = nil
             }
         } else {
-            lastSelected = atom;
+            lastSelected = atom
         }
     }
 }

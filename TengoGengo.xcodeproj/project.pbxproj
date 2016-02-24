@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D94543231C26255000EF18E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94543221C26255000EF18E2 /* AppDelegate.swift */; };
-		D94543251C26255000EF18E2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94543241C26255000EF18E2 /* ViewController.swift */; };
+		D94543251C26255000EF18E2 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94543241C26255000EF18E2 /* MainViewController.swift */; };
 		D94543281C26255000EF18E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D94543261C26255000EF18E2 /* Main.storyboard */; };
 		D945432A1C26255000EF18E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D94543291C26255000EF18E2 /* Assets.xcassets */; };
 		D945432D1C26255000EF18E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D945432B1C26255000EF18E2 /* LaunchScreen.storyboard */; };
@@ -16,6 +16,7 @@
 		D94543431C26255000EF18E2 /* TengoGengoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94543421C26255000EF18E2 /* TengoGengoUITests.swift */; };
 		D94543531C262A3600EF18E2 /* AtomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94543521C262A3600EF18E2 /* AtomView.swift */; };
 		D95EDEBD1C27A7CF00984EC6 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95EDEBC1C27A7CF00984EC6 /* SwiftyJSON.swift */; };
+		D9F146461C6FE7F4002799DA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F146441C6FE7F4002799DA /* SettingsViewController.swift */; };
 		D9F5B88B1C267E8B00B51A8E /* japanese.json in Resources */ = {isa = PBXBuildFile; fileRef = D9F5B88A1C267E8B00B51A8E /* japanese.json */; };
 		D9F5B88E1C267F2400B51A8E /* MoleculeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F5B88D1C267F2400B51A8E /* MoleculeView.swift */; };
 		D9F5B8901C26854D00B51A8E /* khiragana.json in Resources */ = {isa = PBXBuildFile; fileRef = D9F5B88F1C26854D00B51A8E /* khiragana.json */; };
@@ -41,7 +42,7 @@
 /* Begin PBXFileReference section */
 		D945431F1C26255000EF18E2 /* TengoGengo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TengoGengo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D94543221C26255000EF18E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D94543241C26255000EF18E2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D94543241C26255000EF18E2 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		D94543271C26255000EF18E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D94543291C26255000EF18E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D945432C1C26255000EF18E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -54,6 +55,7 @@
 		D94543441C26255000EF18E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D94543521C262A3600EF18E2 /* AtomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AtomView.swift; path = TengoGengo/AtomView.swift; sourceTree = "<group>"; };
 		D95EDEBC1C27A7CF00984EC6 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		D9F146441C6FE7F4002799DA /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D9F5B88A1C267E8B00B51A8E /* japanese.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = japanese.json; sourceTree = "<group>"; };
 		D9F5B88D1C267F2400B51A8E /* MoleculeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MoleculeView.swift; path = TengoGengo/MoleculeView.swift; sourceTree = "<group>"; };
 		D9F5B88F1C26854D00B51A8E /* khiragana.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = khiragana.json; sourceTree = "<group>"; };
@@ -111,11 +113,12 @@
 			isa = PBXGroup;
 			children = (
 				D94543221C26255000EF18E2 /* AppDelegate.swift */,
-				D94543241C26255000EF18E2 /* ViewController.swift */,
+				D94543241C26255000EF18E2 /* MainViewController.swift */,
 				D94543261C26255000EF18E2 /* Main.storyboard */,
 				D94543291C26255000EF18E2 /* Assets.xcassets */,
 				D945432B1C26255000EF18E2 /* LaunchScreen.storyboard */,
 				D945432E1C26255000EF18E2 /* Info.plist */,
+				D9F146441C6FE7F4002799DA /* SettingsViewController.swift */,
 			);
 			path = TengoGengo;
 			sourceTree = "<group>";
@@ -298,11 +301,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D94543251C26255000EF18E2 /* ViewController.swift in Sources */,
+				D94543251C26255000EF18E2 /* MainViewController.swift in Sources */,
 				D94543231C26255000EF18E2 /* AppDelegate.swift in Sources */,
 				D94543531C262A3600EF18E2 /* AtomView.swift in Sources */,
 				D95EDEBD1C27A7CF00984EC6 /* SwiftyJSON.swift in Sources */,
 				D9F5B88E1C267F2400B51A8E /* MoleculeView.swift in Sources */,
+				D9F146461C6FE7F4002799DA /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

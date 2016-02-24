@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AVFoundation
+
 
 class AtomView: UIButton, UIGestureRecognizerDelegate {
     
@@ -15,6 +17,7 @@ class AtomView: UIButton, UIGestureRecognizerDelegate {
     var label = UILabel()
     var initialString = "x"
     var translation = "y"
+    var isTranslation: Bool!
     var atomRadius: CGFloat = 30
     var atomDiameter: CGFloat
     var fontSize: CGFloat = 30.0
@@ -27,6 +30,8 @@ class AtomView: UIButton, UIGestureRecognizerDelegate {
     var delegate: AtomViewDelegate?
     var originalCenter: CGPoint!
     var parentView: UIView!
+    var voiceSynth = AVSpeechSynthesizer()
+
     
     override var selected: Bool {
         willSet (newSelected) {
@@ -36,32 +41,22 @@ class AtomView: UIButton, UIGestureRecognizerDelegate {
                 strokeColor = tmpColor
             }
         } didSet {
-            if (selected) {
+            if (true || selected) {
                 delegate?.atomWasSelected?(self)
             }
         }
     }
     
     override func drawRect(rect: CGRect) {
-        let context = UIGraphicsGetCurrentContext()
-
         var path = UIBezierPath(ovalInRect: rect)
         strokeColor.setFill()
         path.fill()
-        // Doing this for two reasons:
-        // a - I'm a newb to this stuff
-        // b - when I set strokeWidth to something large, it gets clipped (rectangleishly), so I'm faking it.
         
         let childWidth = rect.size.width - 5
         let offset = (rect.size.width / 2) - (childWidth / 2)
         path = UIBezierPath(ovalInRect: CGRectMake(rect.origin.x + offset, rect.origin.y + offset, childWidth, childWidth))
         fillColor.setFill()
         path.fill()
-        
-        let myShadowOffset = CGSizeMake (-10,  15)
-        CGContextSaveGState(context)
-        CGContextSetShadowWithColor(context, myShadowOffset, 5, UIColor.redColor().CGColor)
-        //CGContextSetShadow (context, myShadowOffset, 5)
         
         super.drawRect(rect)
         setTitleColor(strokeColor, forState: .Normal)
@@ -71,13 +66,12 @@ class AtomView: UIButton, UIGestureRecognizerDelegate {
     required init?(coder aDecoder: NSCoder) {
         atomDiameter = atomRadius * 2
         super.init(coder: aDecoder)
-
-        //self.contentEdgeInsets = UIEdgeInsetsMake(-self.fontSize / 8, 0, 0, 0) // there's gotta be a better way to center this text.
     }
     
-    init(x: CGFloat, y: CGFloat, syllable: String, translation: String, inView: UIView) {
+    init(x: CGFloat, y: CGFloat, syllable: String, translation: String, inView: UIView, isTranslation: Bool) {
         atomDiameter = atomRadius * 2
         parentView = inView
+        self.isTranslation = isTranslation
         super.init(frame:CGRectMake(x , y, atomDiameter, atomDiameter))
         originalCenter = center
         frame = CGRectMake(parentView.center.x, parentView.center.y, atomDiameter, atomDiameter)
@@ -104,12 +98,26 @@ class AtomView: UIButton, UIGestureRecognizerDelegate {
         translation = language2
         titleLabel?.font = UIFont(name: "Helvetica", size: fontSize)
         titleLabel?.baselineAdjustment = UIBaselineAdjustment.AlignCenters
+        if (!isTranslation) {
+            contentEdgeInsets = UIEdgeInsetsMake(-atomRadius / 10, 0, 0, 0)
+        }
         setTitle(initialString, forState: .Normal)
         setTitle("", forState: .Disabled)
     }
     
     func handleTap(recognizer: UITapGestureRecognizer) {
         if (state != UIControlState.Disabled) {
+            var utterance: AVSpeechUtterance;
+            if (!self.isTranslation) {
+                utterance = AVSpeechUtterance(string: initialString)
+            } else {
+                utterance = AVSpeechUtterance(string: translation)
+            }
+            utterance.voice = AVSpeechSynthesisVoice(language: "ja-JP")
+
+            if (!self.selected) {
+                voiceSynth.speakUtterance(utterance)
+            }
             selected = !self.selected
         }
     }

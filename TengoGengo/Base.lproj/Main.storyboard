@@ -3,13 +3,14 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TengoGengo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="TengoGengo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -20,23 +21,35 @@
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jUJ-Ty-cHx">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <items>
-                                    <barButtonItem title="Reload" id="rrb-m2-SRJ">
+                                    <barButtonItem title="Reload" style="plain" id="rrb-m2-SRJ">
                                         <connections>
                                             <action selector="reload" destination="BYZ-38-t0r" id="xwh-Z8-xkD"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="c3f-mo-jWc"/>
+                                    <barButtonItem title="Settings" id="1mr-E0-o6w" userLabel="Settings Button">
+                                        <connections>
+                                            <action selector="settings:" destination="BYZ-38-t0r" id="QwU-sO-UKy"/>
+                                            <segue destination="3Ci-Kj-Ztc" kind="popoverPresentation" popoverAnchorBarButtonItem="1mr-E0-o6w" id="Th6-GP-zr1">
+                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                            </segue>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="AE5-CP-ftV"/>
-                                    <barButtonItem title="Next" id="ohZ-de-1Ux">
+                                    <barButtonItem title="Next" id="ohZ-de-1Ux" userLabel="Next Button">
                                         <connections>
                                             <action selector="nextSet" destination="BYZ-38-t0r" id="3Zx-v2-K1R"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
+                                <color key="tintColor" red="0.83943471858638741" green="0.09638782430915957" blue="0.033254293704160713" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </toolbar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7sE-Bk-xiW">
                                 <rect key="frame" x="0.0" y="20" width="600" height="536"/>
-                                <color key="backgroundColor" red="0.0096326897905759656" green="0.0060731850569503793" blue="0.0065694919112748232" alpha="0.12076130319148937" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                             </view>
                         </subviews>
@@ -49,6 +62,7 @@
                             <constraint firstItem="jUJ-Ty-cHx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="cM7-e5-hIe"/>
                             <constraint firstItem="7sE-Bk-xiW" firstAttribute="bottom" secondItem="jUJ-Ty-cHx" secondAttribute="top" id="eBA-T2-9e5"/>
                             <constraint firstItem="7sE-Bk-xiW" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="gqC-Ho-IBN"/>
+                            <constraint firstItem="jUJ-Ty-cHx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="hC0-ge-Hnf"/>
                             <constraint firstItem="7sE-Bk-xiW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hJL-v0-Gcy"/>
                             <constraint firstItem="jUJ-Ty-cHx" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="k9a-pU-jO0"/>
                         </constraints>
@@ -56,13 +70,92 @@
                     <connections>
                         <outlet property="gameContentView" destination="7sE-Bk-xiW" id="7i1-j4-rtH"/>
                         <outlet property="gameControlsBar" destination="jUJ-Ty-cHx" id="RtQ-01-HeQ"/>
-                        <outlet property="reloadButton" destination="rrb-m2-SRJ" id="d4G-Nf-hS3"/>
-                        <outlet property="settingsButton" destination="ohZ-de-1Ux" id="gM3-e1-vqH"/>
+                        <outlet property="nextButton" destination="ohZ-de-1Ux" id="NTS-Er-WjG"/>
+                        <outlet property="reloadButton" destination="rrb-m2-SRJ" id="oAZ-zb-TB5"/>
+                        <outlet property="settingsButton" destination="1mr-E0-o6w" id="S8c-JY-gsC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="219" y="474"/>
+            <point key="canvasLocation" x="-59" y="481"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="oxm-LS-6CI">
+            <objects>
+                <viewController id="3Ci-Kj-Ztc" customClass="SettingsViewController" customModule="TengoGengo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vnn-yc-wWU"/>
+                        <viewControllerLayoutGuide type="bottom" id="36K-Ki-IWv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zkS-yv-TR8">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="cwN-Q2-9Qt">
+                                <rect key="frame" x="154" y="264" width="293" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="293" id="W4N-15-OgX"/>
+                                    <constraint firstAttribute="width" constant="293" id="bpj-Ta-a35"/>
+                                    <constraint firstAttribute="width" secondItem="cwN-Q2-9Qt" secondAttribute="height" multiplier="293:28" id="gSa-y9-u8m"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Katakana"/>
+                                    <segment title="Hiragana"/>
+                                </segments>
+                                <color key="tintColor" red="0.83943471859999996" green="0.096387824309999995" blue="0.0332542937" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="selectDifficulty:" destination="3Ci-Kj-Ztc" eventType="valueChanged" id="bcs-OF-wz4"/>
+                                    <action selector="selectType:" destination="3Ci-Kj-Ztc" eventType="valueChanged" id="fSC-js-Ji0"/>
+                                </connections>
+                            </segmentedControl>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="085-Hh-dSr">
+                                <rect key="frame" x="154" y="337" width="293" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="nx8-cj-h02"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Easy"/>
+                                    <segment title="Normal"/>
+                                </segments>
+                                <color key="tintColor" red="0.83943471859999996" green="0.096387824309999995" blue="0.0332542937" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="selectDifficulty:" destination="3Ci-Kj-Ztc" eventType="valueChanged" id="1l0-xI-iKc"/>
+                                    <action selector="selectType:" destination="3Ci-Kj-Ztc" eventType="valueChanged" id="dWt-Px-uE8"/>
+                                </connections>
+                            </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yS1-IV-P3E">
+                                <rect key="frame" x="153.5" y="405" width="293" height="35"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <state key="normal" title="Done">
+                                    <color key="titleColor" red="0.83943471859999996" green="0.096387824309999995" blue="0.0332542937" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="doneAction:" destination="3Ci-Kj-Ztc" eventType="touchUpInside" id="xP2-Dt-eLk"/>
+                                    <action selector="selectDifficulty:" destination="3Ci-Kj-Ztc" eventType="touchUpInside" id="8mG-PE-eXL"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="yS1-IV-P3E" firstAttribute="width" secondItem="085-Hh-dSr" secondAttribute="width" id="2PC-DZ-aqC"/>
+                            <constraint firstItem="yS1-IV-P3E" firstAttribute="top" secondItem="085-Hh-dSr" secondAttribute="bottom" constant="40" id="BBz-6A-TGA"/>
+                            <constraint firstItem="yS1-IV-P3E" firstAttribute="centerX" secondItem="zkS-yv-TR8" secondAttribute="centerX" id="Eop-Xr-OhM"/>
+                            <constraint firstItem="cwN-Q2-9Qt" firstAttribute="top" secondItem="vnn-yc-wWU" secondAttribute="bottom" constant="244" id="Ml2-Je-ApX"/>
+                            <constraint firstItem="085-Hh-dSr" firstAttribute="width" secondItem="cwN-Q2-9Qt" secondAttribute="width" id="YmK-ig-Q7G"/>
+                            <constraint firstItem="cwN-Q2-9Qt" firstAttribute="centerX" secondItem="zkS-yv-TR8" secondAttribute="centerX" id="ZOR-OQ-KAK"/>
+                            <constraint firstItem="085-Hh-dSr" firstAttribute="centerX" secondItem="zkS-yv-TR8" secondAttribute="centerX" id="aKh-cs-Sn6"/>
+                            <constraint firstItem="085-Hh-dSr" firstAttribute="top" secondItem="cwN-Q2-9Qt" secondAttribute="bottom" constant="45" id="aLn-9p-uTV"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="difficultyControl" destination="085-Hh-dSr" id="wOH-zX-hhT"/>
+                        <outlet property="doneButton" destination="yS1-IV-P3E" id="JOd-8L-RnN"/>
+                        <outlet property="gameTypeControl" destination="cwN-Q2-9Qt" id="Ccb-Pu-EXb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pxH-7m-P8X" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="883" y="481"/>
         </scene>
     </scenes>
 </document>
