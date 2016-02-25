@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import AVFoundation
-
 
 class AtomView: UIButton, UIGestureRecognizerDelegate {
     
@@ -30,8 +28,6 @@ class AtomView: UIButton, UIGestureRecognizerDelegate {
     var delegate: AtomViewDelegate?
     var originalCenter: CGPoint!
     var parentView: UIView!
-    var voiceSynth = AVSpeechSynthesizer()
-
     
     override var selected: Bool {
         willSet (newSelected) {
@@ -107,18 +103,7 @@ class AtomView: UIButton, UIGestureRecognizerDelegate {
     
     func handleTap(recognizer: UITapGestureRecognizer) {
         if (state != UIControlState.Disabled) {
-            var utterance: AVSpeechUtterance;
-            if (!self.isTranslation) {
-                utterance = AVSpeechUtterance(string: initialString)
-            } else {
-                utterance = AVSpeechUtterance(string: translation)
-            }
-            utterance.voice = AVSpeechSynthesisVoice(language: "ja-JP")
-
-            if (!self.selected) {
-                voiceSynth.speakUtterance(utterance)
-            }
-            selected = !self.selected
+             selected = !self.selected
         }
     }
     

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class MoleculeView: NSObject, AtomViewDelegate {
 
@@ -21,6 +22,8 @@ class MoleculeView: NSObject, AtomViewDelegate {
     var currentKey: String = "h"
     var currentType: String = "hiragana"
     var allKeys: [String] = []
+    var voiceSynth = AVSpeechSynthesizer()
+
     
     init(gameView: UIView, key: String, type: String) {
         super.init()
@@ -162,12 +165,31 @@ class MoleculeView: NSObject, AtomViewDelegate {
         nextSet() // for now
     }
     
+    func speak(atom: AtomView) {
+        guard !atom.selected else {
+            var utterance: AVSpeechUtterance;
+            if (atom.isTranslation == true) {
+                utterance = AVSpeechUtterance(string: atom.initialString)
+            } else {
+                utterance = AVSpeechUtterance(string: atom.translation)
+            }
+            utterance.voice = AVSpeechSynthesisVoice(language: "ja-JP")
+            
+            voiceSynth.speakUtterance(utterance)
+            return
+        }
+        
+
+    }
+    
 
 // MARK: AtomViewDelegate
     func atomWasSelected(atom: AtomView) {
         
         // moleculeRadius = gameContentView.bounds.width / 2 - atomDiameter
         print(atom.initialString + ": " + atom.translation)
+        
+        speak(atom)
         
         if (atom.initialString == self.lastSelected?.translation && self.lastSelected!.selected) {
             lastSelected?.handleMatched(moleculeRadius)
